@@ -1,2 +1,2 @@
 "# kak" 
-link: https://ak-clone-twitter.herokuapp.com/
+link: https://ka-clone-twitter.herokuapp.com/
