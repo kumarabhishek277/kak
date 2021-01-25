@@ -1,0 +1,92 @@
+<nav class="container mx-auto flex items-center justify-between">
+    <div>
+        <p class="font-bold text-3xl">Twitter</p>
+    </div>
+    <div>
+        <ul class="flex items-center justify-between">
+            <li class="ml-5 font-bold text-xl"><a href="/logout">Log Out</a></li>
+        </ul>
+    </div>
+</nav>
+<section class="home_page">
+    <div class="container mx-auto mt-5 w-1/3">
+        <form action="/postTweet" method="POST">
+            <div class="relative flex w-full flex-wrap items-stretch mb-3">
+                <textarea name="new_post" type="text" placeholder="Write Something Here" class="text-2xl w-32 h-32  py-3 
+                    placeholder-gray-400 text-gray-700 relative bg-white bg-white rounded text-sm shadow outline-none 
+                    focus:outline-none focus:shadow-outline w-full pr-10 " maxlength="100">
+                </textarea>
+            </div>
+            <div class="float-right">
+                <button class="mr-5 bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg " type="submit">
+                    POST
+                  </button>
+            </div>
+        </form>
+    </div>
+    <br>
+    <div class="p-8 container mx-auto w-1/3 ">
+        <form action="/finduser" method="POST">
+            <div class="bg-white flex items-center rounded-full shadow-xl">
+                <input class="
+                        rounded-l-full w-full py-4 px-6 text-gray-700 leading-tight focus:outline-none" 
+                        id="userName" name="userName" type="text" placeholder="enter your friends username" required>
+                <div class="p-4">
+                    <button class=" bg-blue-500 text-white rounded-full p-2 hover:bg-blue-400 
+                                   focus:outline-none w-12 h-12 flex items-center justify-center">
+                        Search
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>   
+    <div class="container mx-auto mt-5 w-1/3">
+        <%tweet.forEach(function(tweet){ %>
+        <div class="border-solid border-4">
+            <div class="flex items-center justify-between">
+                <span class="pl-5">id: <%= username%></span><span class="pr-5"><%=tweet.createdAt.toUTCString() %></span>
+            </div>
+            <hr>
+            <p class="font-bold text-2xl pl-7 pt-4 pb-4"><%=tweet.post_body%></p>
+            <hr>
+            <div class="grid grid-cols-3" >
+                <div>
+                    <form action="/update_like" method="POST">
+                        <input 
+                            type="hidden" name="total_likes" id="total_likes" value="<%=JSON.stringify(tweet)%>">
+                        <button class="like_button btn btn-lg ml-5 py-3" 
+                                data-tweet="<%= JSON.stringify(tweet)%>" type="submit"><i class="fa fa-thumbs-up"></i> <%=tweet.likes%></button>
+                    </form> 
+                </div>
+                <div class="col-span-2">
+                    <form action="/new_comment" method="POST" class="flex items-center justify-between mr-5">
+                        <input 
+                            type="text" name="new_comment" id="new_comment" placeholder="comment"
+                            class="rounded-full h-9 mb-4 mt-3 w-10/12 " maxlength="50">
+                        <input type="hidden" name="tweet_id" value="<%= tweet._id%>">
+                        <button type="submit" class="bg-blue-500 text-white p-2 hover:bg-blue-400 
+                        focus:outline-none ml-5 rounded-lg">Submit</button>
+                    </form>
+                </div>
+                
+                       
+            </div>
+            <hr>
+            
+            <hr>
+            <div class="pl-10 pt-4">
+                <%tweet.comments.forEach(function(comment){%>
+                    <div class="flex items-center jsutify-between ">
+                        <span class="pl-4"><%= comment.username%>: </span>
+                        <p class="pl-4"><%= comment.comment_body%></p><br>
+                    </div>
+                <%})%>
+                
+                
+            </div>
+            <br>
+        </div>
+        <br>
+        <%})%>
+    </div>
+</section>

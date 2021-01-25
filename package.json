@@ -1,0 +1,28 @@
+{
+  "name": "clone_twitter",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "serve": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "connect-mongo": "^3.2.0",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "express-ejs-layouts": "^2.5.0",
+    "express-flash": "^0.0.2",
+    "express-session": "^1.17.1",
+    "mongoose": "^5.11.13"
+  },
+  "devDependencies": {
+    "laravel-mix": "^6.0.10",
+    "nodemon": "^2.0.7",
+    "postcss": "8.1",
+    "resolve-url-loader": "3.1.0",
+    "sass": "^1.32.5",
+    "sass-loader": "8.*"
+  }
+}
